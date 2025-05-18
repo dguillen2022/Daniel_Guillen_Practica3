@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="gripper">
+
+  <xacro:macro name="gripper_finger_joint" params="name parent child rpy xyz">
+    <joint name="${name}" type="prismatic">
+      <limit lower="-0.5" upper="0.07" effort="3000.00000" velocity="10.00000"/>
+      <origin rpy="${rpy}" xyz="${xyz}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <axis xyz="0.00000 0.00000 1.00000"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="gripper_finger_link" params="name visual_rpy material mesh_file mesh_scale">
+    <link name="${name}">
+      <collision name="${name}_collision">
+        <origin rpy="${visual_rpy}" xyz="0.00000 0.00000 0.00000"/>
+        <geometry>
+          <mesh filename="${mesh_file}" scale="${mesh_scale}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+        <mass value="0.50000"/>
+        <inertia ixx="0.00177" ixy="0.00000" ixz="0.00000" iyy="0.00542" iyz="0.00000" izz="0.00385"/>
+      </inertial>
+      <visual name="${name}">
+        <origin rpy="${visual_rpy}" xyz="0.00000 0.00000 0.00000"/>
+        <material name="${material}"/>
+        <geometry>
+          <box size="0.30000 0.05000 0.20000"/>
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <xacro:gripper_finger_joint 
+    name="5mano_izquierda_brazo_robotico_link_joint"
+    parent="5mano_brazo_robotico_link"
+    child="5mano_izquierda_brazo_robotico_link"
+    rpy="1.57080 0.00000 0.00000"
+    xyz="0.00060 0.32554 -0.13796" />
+
+  <xacro:gripper_finger_joint 
+    name="5mano_derecha_brazo_robotico_link_joint"
+    parent="5mano_brazo_robotico_link"
+    child="5mano_derecha_brazo_robotico_link"
+    rpy="-1.57080 0.00000 0.00000"
+    xyz="0.00060 -0.32419 -0.13860" />
+
+  <xacro:gripper_finger_link 
+    name="5mano_derecha_brazo_robotico_link"
+    visual_rpy="1.57080 0.00000 0.00000"
+    material="Material.031"
+    mesh_file="package://rover_description/meshes/dae/Cylinder.001.dae"
+    mesh_scale="0.07500 0.07500 1.55000" />
+
+  <xacro:gripper_finger_link 
+    name="5mano_izquierda_brazo_robotico_link"
+    visual_rpy="-1.57080 0.00000 0.00000"
+    material="Material.039"
+    mesh_file="package://rover_description/meshes/dae/Cylinder.013.dae"
+    mesh_scale="0.07500 0.07500 1.55000" />
+
+</robot>

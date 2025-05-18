@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="scara">
+
+  <!-- Definición de macros -->
+  <xacro:macro name="fixed_joint" params="name parent child xyz rpy">
+    <joint name="${name}" type="fixed">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="revolute_joint" params="name parent child xyz rpy lower upper axis">
+    <joint name="${name}" type="revolute">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <limit lower="${lower}" upper="${upper}" effort="1000.0" velocity="10.0"/>
+      <axis xyz="${axis}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="prismatic_joint" params="name parent child xyz rpy lower upper axis">
+    <joint name="${name}" type="prismatic">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <limit lower="${lower}" upper="${upper}" effort="1000.0" velocity="10.0"/>
+      <axis xyz="${axis}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="robot_link_collision" params="name mesh scale origin_xyz origin_rpy">
+    <collision name="${name}_collision">
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <geometry>
+        <mesh filename="${mesh}" scale="${scale}"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="robot_link_inertial" params="mass ixx ixy ixz iyy iyz izz origin_xyz origin_rpy">
+    <inertial>
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <mass value="${mass}"/>
+      <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="robot_link_visual" params="name mesh scale material origin_xyz origin_rpy">
+    <visual name="${name}_visual">
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <material name="${material}"/>
+      <geometry>
+        <mesh filename="${mesh}" scale="${scale}"/>
+      </geometry>
+    </visual>
+  </xacro:macro>
+
+  <xacro:fixed_joint name="1brazo_robotico_link_joint" parent="base_link" child="1brazo_robotico_link" xyz="0.43472 0.00627 1.21671" rpy="0 0 0"/>
+  <xacro:revolute_joint name="2_1brazo_robotico_link_joint" parent="1brazo_robotico_link" child="2_1brazo_robotico_link" xyz="-0.01317 0.00014 0.73900" rpy="0 0 1.57080" lower="-3.14" upper="3.14" axis="0 0 1"/>
+  <xacro:fixed_joint name="2_2brazo_robotico_link_joint" parent="2_1brazo_robotico_link" child="2_2brazo_robotico_link" xyz="0.69766 0.0 0.02036" rpy="0 0 0"/>
+  <xacro:revolute_joint name="3_1brazo_robotico_link_joint" parent="2_2brazo_robotico_link" child="3_1brazo_robotico_link" xyz="0.39748 0.0 0.10262" rpy="0 0 0" lower="-3.0" upper="3.0" axis="0 0 1"/>
+  <xacro:fixed_joint name="3_2brazo_robotico_link_joint" parent="3_1brazo_robotico_link" child="3_2brazo_robotico_link" xyz="0.84806 0.0 0.00173" rpy="0 0 0"/>
+  <xacro:prismatic_joint name="5brazo_robotico_link_joint" parent="3_2brazo_robotico_link" child="5brazo_robotico_link" xyz="0.68762 0.0 0.0" rpy="0 0 0" lower="-2.2" upper="0.6" axis="0 0 1"/>
+  <xacro:revolute_joint name="5mano_brazo_robotico_link_joint" parent="5brazo_robotico_link" child="5mano_brazo_robotico_link" xyz="0.00362 0.00261 -0.92883" rpy="0 0 0" lower="-3.14" upper="3.14" axis="0 0 1"/>
+
+  <link name="1brazo_robotico_link">
+    <xacro:robot_link_collision name="1brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.002.dae" scale="0.07500 0.07500 0.90000" origin_xyz="0.00000 -0.00000 -0.04592" origin_rpy="0.00000 0.00000 0.00000"/>
+    <xacro:robot_link_inertial mass="15.00000" ixx="7.83910" ixy="-0.00002" ixz="-0.00435" iyy="7.83905" iyz="-0.01584" izz="0.04076" origin_xyz="-0.00017 -0.00026 -0.07143" origin_rpy="0.00000 0.00000 0.00000"/>
+    <xacro:robot_link_visual name="1brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.002.dae" scale="0.07500 0.07500 0.90000" material="Material.027" origin_xyz="0.00000 -0.00000 -0.00000" origin_rpy="0.00000 0.00000 0.00000"/>
+  </link>
+
+  <link name="2_1brazo_robotico_link">
+    <collision name="2_1brazo_robotico_collision">
+      <origin xyz="0.00000 0.00000 0.00000" rpy="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <cylinder radius="0.10000" length="0.10000"/>
+      </geometry>
+    </collision>
+    <xacro:robot_link_inertial mass="0.50000" ixx="0.00167" ixy="0.00000" ixz="0.00000" iyy="0.00167" iyz="0.00000" izz="0.00250" origin_xyz="0.00000 0.00000 0.00000" origin_rpy="0.00000 0.00000 0.00000"/>
+    <visual name="2_1brazo_robotico">
+      <origin xyz="0.00000 0.00000 0.00000" rpy="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <cylinder radius="0.10000" length="0.10000"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="2_2brazo_robotico_link">
+    <xacro:robot_link_collision name="2_2brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.004.dae" scale="0.10000 0.10000 0.05000" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="2_2brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.004.dae" scale="0.10000 0.10000 0.05000" material="Material.028" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="1.00000" ixx="0.00795" ixy="0.00000" ixz="-0.02279" iyy="0.25227" iyz="0.00000" izz="0.25036" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="3_1brazo_robotico_link">
+    <xacro:robot_link_collision name="3_1brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.014.dae" scale="0.12500 0.12500 0.05000" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="3_1brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.014.dae" scale="0.12500 0.12500 0.05000" material="Material.029" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="0.50000" ixx="0.00237" ixy="0.00000" ixz="0.00000" iyy="0.00237" iyz="0.00000" izz="0.00391" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="3_2brazo_robotico_link">
+    <xacro:robot_link_collision name="3_2brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.006.dae" scale="0.12500 0.12500 0.05000" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="3_2brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.006.dae" scale="0.12500 0.12500 0.05000" material="Material.029" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="1.50000" ixx="0.00637" ixy="-0.00000" ixz="0.00162" iyy="0.87483" iyz="-0.00000" izz="0.87869" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="5brazo_robotico_link">
+    <xacro:robot_link_collision name="5brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.009.dae" scale="0.07500 0.07500 1.55000" origin_xyz="0 0 0.77264" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="5brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.009.dae" scale="0.07500 0.07500 1.55000" material="Material.031" origin_xyz="0 0 0.77264" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="1.00000" ixx="1.32333" ixy="-0.00000" ixz="0.00000" iyy="1.32333" iyz="0.00000" izz="0.00263" origin_xyz="0 0 0.77264" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="5mano_brazo_robotico_link">
+    <xacro:robot_link_collision name="5mano_brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.011.dae" scale="0.07500 0.07500 1.55000" origin_xyz="0 0 0.00840" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="5mano_brazo_robotico" mesh="package://rover_description/meshes/dae/Cylinder.011.dae" scale="0.07500 0.07500 1.55000" material="Material.031" origin_xyz="0 0 0.00840" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="0.50000" ixx="0.01935" ixy="0.00001" ixz="0.00012" iyy="0.00509" iyz="-0.00004" izz="0.02149" origin_xyz="0 0 0.00840" origin_rpy="0 0 0"/>
+  </link>
+
+</robot>

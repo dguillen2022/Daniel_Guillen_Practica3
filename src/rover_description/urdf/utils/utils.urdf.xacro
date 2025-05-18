@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="robot_base">
+
+  <xacro:macro name="define_material" params="name rgba">
+    <material name="${name}">
+      <color rgba="${rgba}"/>
+    </material>
+  </xacro:macro>
+
+  <xacro:define_material name="Material.001" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.002" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.003" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.004" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.005" rgba="0.02353 0.03137 0.02745 1.00000"/>
+  <xacro:define_material name="Material.006" rgba="0.09020 0.09804 0.09412 1.00000"/>
+  <xacro:define_material name="Material.007" rgba="0.08627 0.09804 0.09412 1.00000"/>
+  <xacro:define_material name="Material.008" rgba="0.08627 0.09412 0.09020 1.00000"/>
+  <xacro:define_material name="Material.009" rgba="0.80000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.010" rgba="0.11373 0.14118 0.16471 1.00000"/>
+  <xacro:define_material name="Material.011" rgba="0.14118 0.16471 0.19216 1.00000"/>
+  <xacro:define_material name="Material.012" rgba="0.14118 0.16471 0.19216 1.00000"/>
+  <xacro:define_material name="Material.013" rgba="0.06667 0.08627 0.09412 1.00000"/>
+  <xacro:define_material name="Material.014" rgba="0.04314 0.04314 0.04314 1.00000"/>
+  <xacro:define_material name="Material.015" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.016" rgba="0.07843 0.07059 0.06275 1.00000"/>
+  <xacro:define_material name="Material.017" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.018" rgba="0.29412 0.33333 0.41176 1.00000"/>
+  <xacro:define_material name="Material.019" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.020" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.021" rgba="0.16471 0.18039 0.21176 1.00000"/>
+  <xacro:define_material name="Material.022" rgba="0.14510 0.16078 0.18431 1.00000"/>
+  <xacro:define_material name="Material.023" rgba="0.02353 0.02353 0.02353 1.00000"/>
+  <xacro:define_material name="Material.024" rgba="0.20784 0.23529 0.28627 1.00000"/>
+  <xacro:define_material name="Material.025" rgba="0.10588 0.10588 0.10588 1.00000"/>
+  <xacro:define_material name="Material.026" rgba="0.15294 0.16863 0.19608 1.00000"/>
+  <xacro:define_material name="Material.027" rgba="0.17255 0.18824 0.21961 1.00000"/>
+  <xacro:define_material name="Material.028" rgba="0.13725 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.029" rgba="0.29412 0.32549 0.39608 1.00000"/>
+  <xacro:define_material name="Material.031" rgba="0.25098 0.28627 0.34902 1.00000"/>
+  <xacro:define_material name="Material.032" rgba="0.80000 0.00392 0.00000 1.00000"/>
+  <xacro:define_material name="Material.033" rgba="0.80000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.034" rgba="0.80000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.035" rgba="0.80000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.036" rgba="0.80000 0.01569 0.00000 1.00000"/>
+  <xacro:define_material name="Material.037" rgba="0.00000 0.00000 0.00000 1.00000"/>
+  <xacro:define_material name="Material.039" rgba="0.25098 0.28627 0.34902 1.00000"/>
+
+</robot>

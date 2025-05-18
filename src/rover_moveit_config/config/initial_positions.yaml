@@ -1,0 +1,9 @@
+# Default initial positions for rover's ros2_control fake system
+
+initial_positions:
+  2_1brazo_robotico_link_joint: 0
+  3_1brazo_robotico_link_joint: 0
+  5brazo_robotico_link_joint: 0
+  5mano_brazo_robotico_link_joint: 0
+  5mano_derecha_brazo_robotico_link_joint: 0
+  5mano_izquierda_brazo_robotico_link_joint: 0

@@ -1,0 +1,27 @@
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+use_sim_time: true
+
+moveit_simple_controller_manager:
+  controller_names:
+    - scara_controller
+    - gripper_controller
+
+  scara_controller:
+    type: FollowJointTrajectory
+    joints:
+      - 2_1brazo_robotico_link_joint
+      - 3_1brazo_robotico_link_joint
+      - 5brazo_robotico_link_joint
+      - 5mano_brazo_robotico_link_joint
+    action_ns: follow_joint_trajectory
+    default: true
+    use_sim_true: true
+
+  gripper_controller:
+    type: FollowJointTrajectory
+    joints:
+      - 5mano_derecha_brazo_robotico_link_joint
+      - 5mano_izquierda_brazo_robotico_link_joint
+    action_ns: follow_joint_trajectory
+    default: true
+    use_sim_time: true

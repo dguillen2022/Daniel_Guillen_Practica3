@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="robot_base">
+  
+  <xacro:macro name="fixed_joint" params="name parent child xyz rpy">
+    <joint name="${name}" type="fixed">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="revolute_joint" params="name parent child xyz rpy lower upper axis">
+    <joint name="${name}" type="revolute">
+      <limit lower="${lower}" upper="${upper}" effort="1000.00000" velocity="10.00000"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <axis xyz="${axis}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="robot_link_collision" params="name mesh scale origin_xyz origin_rpy">
+    <collision name="${name}_collision">
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <geometry>
+        <mesh filename="${mesh}" scale="${scale}"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="robot_link_inertial" params="mass ixx ixy ixz iyy iyz izz origin_xyz origin_rpy">
+    <inertial>
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <mass value="${mass}"/>
+      <inertia 
+        ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"
+        iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="robot_link_visual" params="name mesh scale material origin_xyz origin_rpy">
+    <visual name="${name}_visual">
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <material name="${material}"/>
+      <geometry>
+        <mesh filename="${mesh}" scale="${scale}"/>
+      </geometry>
+    </visual>
+  </xacro:macro>
+
+  <link name="base_footprint"/>
+
+  <link name="back_chasis_1.019_link">
+    <xacro:robot_link_collision name="back_chasis_1.019_link" mesh="package://rover_description/meshes/dae/Cylinder.053.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.09072" ixy="0.00000" ixz="0.00000" iyy="0.04165" iyz="0.00000" izz="0.06483" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.019_link" mesh="package://rover_description/meshes/dae/Cylinder.053.dae" scale="0.1 0.1 0.1" material="Material.035" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+  </link>
+
+  <link name="back_chasis_1.025_link">
+    <xacro:robot_link_collision name="back_chasis_1.025_link" mesh="package://rover_description/meshes/dae/Cylinder.059.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.00497" ixy="0.00000" ixz="0.00000" iyy="0.76620" iyz="0.00000" izz="0.76634" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.025_link" mesh="package://rover_description/meshes/dae/Cylinder.059.dae" scale="0.1 0.1 0.1" material="Material.015" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="back_chasis_1.027_link">
+    <xacro:robot_link_collision name="back_chasis_1.027_link" mesh="package://rover_description/meshes/dae/Cylinder.061.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.01073" ixy="0.00000" ixz="0.00000" iyy="0.79330" iyz="-0.00000" izz="0.78340" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.027_link" mesh="package://rover_description/meshes/dae/Cylinder.061.dae" scale="0.1 0.1 0.1" material="Material.016" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="back_chasis_1.028_link">
+    <xacro:robot_link_collision name="back_chasis_1.028_link" mesh="package://rover_description/meshes/dae/Cylinder.062.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.01073" ixy="0.00000" ixz="0.00000" iyy="0.79330" iyz="-0.00000" izz="0.78340" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.028_link" mesh="package://rover_description/meshes/dae/Cylinder.062.dae" scale="0.1 0.1 0.1" material="Material.018" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="back_chasis_1.029_link">
+    <xacro:robot_link_collision name="back_chasis_1.029_link" mesh="package://rover_description/meshes/dae/Cylinder.063.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.00418" ixy="-0.00000" ixz="-0.00000" iyy="0.39770" iyz="0.00042" izz="0.39776" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.029_link" mesh="package://rover_description/meshes/dae/Cylinder.063.dae" scale="0.1 0.1 0.1" material="Material.021" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="back_chasis_1.030_link">
+    <xacro:robot_link_collision name="back_chasis_1.030_link" mesh="package://rover_description/meshes/dae/Cylinder.064.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.00293" ixy="-0.00000" ixz="0.00000" iyy="0.39666" iyz="-0.00105" izz="0.39680" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.030_link" mesh="package://rover_description/meshes/dae/Cylinder.064.dae" scale="0.1 0.1 0.1" material="Material.022" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="back_chasis_1.031_link">
+    <xacro:robot_link_collision name="back_chasis_1.031_link" mesh="package://rover_description/meshes/dae/Cylinder.065.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.00523" ixy="0.00000" ixz="0.00000" iyy="0.38416" iyz="0.00000" izz="0.38856" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.031_link" mesh="package://rover_description/meshes/dae/Cylinder.065.dae" scale="0.1 0.1 0.1" material="Material.019" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="back_chasis_1.032_link">
+    <xacro:robot_link_collision name="back_chasis_1.032_link" mesh="package://rover_description/meshes/dae/Cylinder.066.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.08815" ixy="0.00000" ixz="0.00000" iyy="0.04165" iyz="0.00000" izz="0.06225" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.032_link" mesh="package://rover_description/meshes/dae/Cylinder.066.dae" scale="0.1 0.1 0.1" material="Material.036" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+  </link>
+
+  <link name="back_chasis_1.033_link">
+    <xacro:robot_link_collision name="back_chasis_1.033_link" mesh="package://rover_description/meshes/dae/Cylinder.067.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.06971" ixy="-0.00000" ixz="0.02210" iyy="0.07208" iyz="0.00000" izz="0.12237" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.033_link" mesh="package://rover_description/meshes/dae/Cylinder.067.dae" scale="0.1 0.1 0.1" material="Material.024" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+  </link>
+
+  <link name="back_chasis_1.038_link">
+    <xacro:robot_link_collision name="back_chasis_1.038_link" mesh="package://rover_description/meshes/dae/Cylinder.072.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.02829" ixy="0.00000" ixz="0.00000" iyy="0.02148" iyz="-0.00000" izz="0.00894" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.038_link" mesh="package://rover_description/meshes/dae/Cylinder.072.dae" scale="0.1 0.1 0.1" material="Material.037" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+  </link>
+
+  <link name="back_chasis_1.040_link">
+    <xacro:robot_link_collision name="back_chasis_1.040_link" mesh="package://rover_description/meshes/dae/Cylinder.074.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.05468" ixy="-0.00086" ixz="0.01157" iyy="0.05787" iyz="0.00013" izz="0.09404" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.040_link" mesh="package://rover_description/meshes/dae/Cylinder.074.dae" scale="0.1 0.1 0.1" material="Material.026" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+  </link>
+
+  <link name="back_chasis_1.042_link">
+    <xacro:robot_link_collision name="back_chasis_1.042_link" mesh="package://rover_description/meshes/dae/Cylinder.076.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.00497" ixy="0.00000" ixz="0.00000" iyy="0.76764" iyz="0.00000" izz="0.76778" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.042_link" mesh="package://rover_description/meshes/dae/Cylinder.076.dae" scale="0.1 0.1 0.1" material="Material.017" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="back_chasis_1.043_link">
+    <xacro:robot_link_collision name="back_chasis_1.043_link" mesh="package://rover_description/meshes/dae/Cylinder.077.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 -1.57080 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.50923" ixy="-0.00003" ixz="-0.00014" iyy="0.02683" iyz="0.00031" izz="0.48447" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.043_link" mesh="package://rover_description/meshes/dae/Cylinder.077.dae" scale="0.1 0.1 0.1" material="Material.023" origin_xyz="0 0 0" origin_rpy="0 -1.57080 0"/>
+  </link>
+
+  <link name="back_chasis_1.044_link">
+    <xacro:robot_link_collision name="back_chasis_1.044_link" mesh="package://rover_description/meshes/dae/Cylinder.078.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.06971" ixy="0.00000" ixz="0.02210" iyy="0.07208" iyz="0.00000" izz="0.12237" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.044_link" mesh="package://rover_description/meshes/dae/Cylinder.078.dae" scale="0.1 0.1 0.1" material="Material.025" origin_xyz="0 0 0" origin_rpy="-1.57080 0 -1.57080"/>
+  </link>
+
+  <link name="back_chasis_1.047_link">
+    <xacro:robot_link_collision name="back_chasis_1.047_link" mesh="package://rover_description/meshes/dae/Cylinder.081.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="2.0" ixx="0.00523" ixy="0.00000" ixz="-0.00000" iyy="0.38416" iyz="0.00000" izz="0.38856" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="back_chasis_1.047_link" mesh="package://rover_description/meshes/dae/Cylinder.081.dae" scale="0.1 0.1 0.1" material="Material.020" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="base_link">
+    <xacro:robot_link_collision name="base_link" mesh="package://rover_description/meshes/dae/Cylinder.075.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="-1.57080 0 0"/>
+    <xacro:robot_link_inertial mass="150.0" ixx="18.07067" ixy="0.00032" ixz="0.32867" iyy="46.41612" iyz="0.01418" izz="59.91762" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="base_link" mesh="package://rover_description/meshes/dae/Cylinder.075.dae" scale="0.1 0.1 0.1" material="Material.014" origin_xyz="0 0 0" origin_rpy="-1.57080 0 0"/>
+  </link>
+
+  <link name="connect_wheel_left_back_link">
+    <xacro:robot_link_collision name="connect_wheel_left_back_link" mesh="package://rover_description/meshes/dae/Cylinder.039.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+    <xacro:robot_link_inertial mass="5.0" ixx="0.25833" ixy="-0.00000" ixz="-0.25000" iyy="0.50833" iyz="-0.00000" izz="0.25833" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="connect_wheel_left_back_link" mesh="package://rover_description/meshes/dae/Cylinder.039.dae" scale="0.1 0.1 0.1" material="Material.008" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+  </link>
+
+  <link name="connect_wheel_left_front_link">
+    <xacro:robot_link_collision name="connect_wheel_left_front_link" mesh="package://rover_description/meshes/dae/Cylinder.046.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="5.0" ixx="0.43920" ixy="0.00000" ixz="0.46529" iyy="0.94167" iyz="-0.00000" izz="0.51080" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="connect_wheel_left_front_link" mesh="package://rover_description/meshes/dae/Cylinder.046.dae" scale="0.1 0.1 0.1" material="Material.005" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="connect_wheel_right_back_link">
+    <xacro:robot_link_collision name="connect_wheel_right_back_link" mesh="package://rover_description/meshes/dae/Cylinder.056.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="5.0" ixx="0.25833" ixy="-0.00000" ixz="-0.25000" iyy="0.50833" iyz="-0.00000" izz="0.25833" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="connect_wheel_right_back_link" mesh="package://rover_description/meshes/dae/Cylinder.056.dae" scale="0.1 0.1 0.1" material="Material.010" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="connect_wheel_right_front_link">
+    <xacro:robot_link_collision name="connect_wheel_right_front_link" mesh="package://rover_description/meshes/dae/Cylinder.052.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="5.0" ixx="0.43920" ixy="0.00000" ixz="0.46529" iyy="0.94167" iyz="-0.00000" izz="0.51080" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="connect_wheel_right_front_link" mesh="package://rover_description/meshes/dae/Cylinder.052.dae" scale="0.1 0.1 0.1" material="Material.013" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="wheel_center.1_link">
+    <xacro:robot_link_collision name="wheel_center.1_link" mesh="package://rover_description/meshes/dae/Cylinder.041.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+    <xacro:robot_link_inertial mass="5.0" ixx="0.11695" ixy="-0.00000" ixz="-0.00000" iyy="0.02413" iyz="-0.00000" izz="0.11695" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="wheel_center.1_link" mesh="package://rover_description/meshes/dae/Cylinder.041.dae" scale="0.1 0.1 0.1" material="Material.033" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+  </link>
+
+  <link name="wheel_center.2_link">
+    <xacro:robot_link_collision name="wheel_center.2_link" mesh="package://rover_description/meshes/dae/Cylinder.044.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_inertial mass="10.0" ixx="0.00100" ixy="0.00000" ixz="0.00000" iyy="0.00100" iyz="0.00000" izz="0.00100" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="wheel_center.2_link" mesh="package://rover_description/meshes/dae/Cylinder.044.dae" scale="0.1 0.1 0.1" material="Material.034" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  </link>
+
+  <link name="wheel_center.3_link">
+    <xacro:robot_link_collision name="wheel_center.3_link" mesh="package://rover_description/meshes/dae/Cylinder.048.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+    <xacro:robot_link_inertial mass="5.0" ixx="0.11695" ixy="0.00000" ixz="0.00000" iyy="0.02413" iyz="0.00000" izz="0.11695" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+    <xacro:robot_link_visual name="wheel_center.3_link" mesh="package://rover_description/meshes/dae/Cylinder.048.dae" scale="0.1 0.1 0.1" material="Material.009" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+  </link>
+
+  <link name="wheel_center.4_link">
+  <xacro:robot_link_collision name="wheel_center.4_link" mesh="package://rover_description/meshes/dae/Cylinder.049.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  <xacro:robot_link_inertial mass="5.0" ixx="0.11695" ixy="0.00000" ixz="-0.00000" iyy="0.02413" iyz="0.00000" izz="0.11695" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  <xacro:robot_link_visual name="wheel_center.4_link" mesh="package://rover_description/meshes/dae/Cylinder.049.dae" scale="0.1 0.1 0.1" material="Material.032" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+</link>
+
+<link name="wheel_to_chasis.1_link">
+  <xacro:robot_link_collision name="wheel_to_chasis.1_link" mesh="package://rover_description/meshes/dae/Cylinder.040.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  <xacro:robot_link_inertial mass="5.0" ixx="0.02909" ixy="0.00000" ixz="-0.00000" iyy="0.02484" iyz="0.00000" izz="0.02909" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  <xacro:robot_link_visual name="wheel_to_chasis.1_link" mesh="package://rover_description/meshes/dae/Cylinder.040.dae" scale="0.1 0.1 0.1" material="Material.007" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+</link>
+
+<link name="wheel_to_chasis.2_link">
+  <xacro:robot_link_collision name="wheel_to_chasis.2_link" mesh="package://rover_description/meshes/dae/Cylinder.055.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+  <xacro:robot_link_inertial mass="5.0" ixx="0.02909" ixy="0.00000" ixz="-0.00000" iyy="0.02484" iyz="0.00000" izz="0.02909" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  <xacro:robot_link_visual name="wheel_to_chasis.2_link" mesh="package://rover_description/meshes/dae/Cylinder.055.dae" scale="0.1 0.1 0.1" material="Material.011" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+</link>
+
+<link name="wheel_to_chasis.3_link">
+  <xacro:robot_link_collision name="wheel_to_chasis.3_link" mesh="package://rover_description/meshes/dae/Cylinder.045.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  <xacro:robot_link_inertial mass="5.0" ixx="0.02909" ixy="0.00000" ixz="-0.00000" iyy="0.02484" iyz="0.00000" izz="0.02909" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+  <xacro:robot_link_visual name="wheel_to_chasis.3_link" mesh="package://rover_description/meshes/dae/Cylinder.045.dae" scale="0.1 0.1 0.1" material="Material.006" origin_xyz="0 0 0" origin_rpy="0 0 0"/>
+</link>
+
+<link name="wheel_to_chasis.4_link">
+  <xacro:robot_link_collision name="wheel_to_chasis.4_link" mesh="package://rover_description/meshes/dae/Cylinder.058.dae" scale="0.1 0.1 0.1" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+  <xacro:robot_link_inertial mass="5.0" ixx="0.03464" ixy="-0.00000" ixz="-0.00000" iyy="0.02484" iyz="-0.00000" izz="0.03464" origin_xyz="0 0 -0.1" origin_rpy="0 0 0"/>
+  <xacro:robot_link_visual name="wheel_to_chasis.4_link" mesh="package://rover_description/meshes/dae/Cylinder.058.dae" scale="0.1 0.1 0.1" material="Material.012" origin_xyz="0 0 0" origin_rpy="3.14159 0 0"/>
+</link>
+
+</robot>
