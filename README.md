@@ -28,12 +28,33 @@ Para llevara cabo esta imagen se ha desplazado el robot hasta el cubo, se ha mov
 
 ## PDF del árbol de transformadas entre los links del robot.
 
-![alt text](imgs/frames_2025-05-16_19.17.50.pdf)
+[Ver árbol de transformadas (PDF)](Arbol_transformadas.pdf)
 
+Todos los links parten del base_link que es la base del robot y este del base_footprint. Está el chasis, la jerarquía de las ruedas, las cuales parten de los ejes que a su vez parten del soporte y este del conector a la base. Y a la izquierda del todo se ve el brazo y su jerarquía.
+
+## Imagen del gráfico posición de las ruedas.
+
+![alt text](imgs/wheel_position.png)
+
+En el gráfico de la posición se puede observa como desde todas las ruedas parten de una posición estable. Las ruedas de la derecha tienen valores negativos debido a que los joints están en el sentido contrario. Se puede ver el desplazamiento de las ruedas, el cual correspondería a avanzar y girar ligeramente a la izquierda para llegar al cubo. Se ve como en el segundo 22 llega a donde el cubo. Se mantiene en esa posición hasta el segundo 110. Finalmente, retrocede ligeramente.
+
+## Imagen del gráfico aceleración
 
 ![alt text](imgs/acceleration_xyz.png)
-![alt text](imgs/effort_arm_hand.png)
 
+Esta gráfica muestra la aceleración registrada en los tres ejes (x, y, z) por el sensor IMU incorporado en el robot. Las componentes están codificadas por color:
+
+    Azul: aceleración en el eje x (dirección longitudinal del robot).
+
+    Rojo: aceleración en el eje y (lateral).
+
+    Verde: aceleración en el eje z (vertical).
+
+Se observa al inicio una fuerte perturbación indicando el avance y giro hacia el cubo. En el medio detecta también algo de movimiento y al final de la gráfica se puede ver el retroceso del coche que he llevado a cabo después de elevar el cubo.
+
+## Imagen del gráfico gasto
 
 ![alt text](imgs/grafico_gasto.png)
-![alt text](imgs/wheel_position.png)
+
+Esta gráfica muestra el gasto parcial del brazo del robot.
+Al inicio se ven unas ligeras oscilaciones donde el brazo se está moviendo hacia adelante, posicionandose encima del cubo y abriendo la pinza. Después se ve como después del minuto 18:02:30 hay una subida repentina lo que coincide con la bajada del brazo, cierre de pinza y elevación del brazo con el cubo sujeto. Se pueden ver oscilaciones a continuación indicando el movimiento del brazo mientras sujeta el cubo y mantiene la pinza cerrada sujetando el cubo. Y finalmente se ve como después del 18:03:30 suelta el cubo y la ultima oscilación es colocando el brazo ligeramente.
