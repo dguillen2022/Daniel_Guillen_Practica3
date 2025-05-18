@@ -1,0 +1,7 @@
+![alt text](imgs/acceleration_xyz.png)
+![alt text](imgs/effort_arm_hand.png)
+[text](imgs/frames_2025-05-16_19.17.50.pdf)
+![alt text](imgs/grafico_gasto.png)
+![alt text](imgs/Holding_cube.png)
+![alt text](imgs/model_rviz.png)
+![alt text](imgs/wheel_position.png)
